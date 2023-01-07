@@ -1,3 +1,42 @@
+/*
+  CSS Reset
+*/
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+  Navigation
+*/
+
 html {
   scroll-snap-type: y mandatory;
 }
@@ -6,33 +45,36 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+/*
+  Color
+*/
+
+:root {
+  --color1: #d93b58;
+  --color2: #0b395a;
+  --color3: #020c15;
+  --color4: #f6f9f9;
+  --color5: #e6f288;
+  --color6: #e4e6e7;
 }
 
-.active {
-  position: fixed;
-  top: 0;
-  left: 0;
+/*
+  Type
+*/
+
+body,
+button {
+  color: var(--color3);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
-/* SECTION 1 */
-section:nth-of-type(1) {
-  background-color: royalblue;
-}
+/*
+  Sections
+*/
 
-/* SECTION 2 */
-section:nth-of-type(2) {
-  background-color: blueviolet;
-}
-
-/* SECTION 3 */
-section:nth-of-type(3) {
-  background-color: pink;
-}
-
-/* ALL SECTIONS */
+/*DELETE THIS*/
 
 section {
   scroll-snap-align: start;
@@ -43,12 +85,6 @@ section {
   justify-content: space-between;
 }
 
-h1 {
-  font-size: 50px;
-  margin: 2vw;
-  text-decoration: underline;
-}
-
 a {
   margin: 2vw;
   width: 80px;
@@ -57,4 +93,97 @@ a {
 
 a > img {
   width: 80px;
+}
+
+/*-------------------------*/
+
+/*
+  Pomodoro & Sounds Section
+*/
+
+#section-1 {
+  background-color: var(--color4);
+}
+
+/*
+  Nav
+*/
+
+nav {
+  display: flex;
+  height: 3.5rem;
+  width: 96vw;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid var(--color6) 2px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo > img {
+  margin-left: 4vw;
+  width: 25px;
+}
+
+.nav-logo > p {
+  margin-left: 0.3rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  text-shadow: 1.5px 0 var(--color3);
+}
+
+.nav-divider {
+  content: "";
+  border-left: solid var(--color6) 2px;
+  height: 3rem;
+  align-self: flex-end;
+}
+
+/*
+  Nav buttons
+*/
+
+.nav-buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-how-button {
+  margin-right: 1.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.5rem 0.7rem;
+  background-color: transparent;
+  border: solid 2px var(--color3);
+  border-radius: 2px;
+}
+
+.nav-menu-button {
+  margin-right: 4vw;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.nav-menu-button > img {
+  width: 25px;
+}
+
+/*
+  Tasks Section
+*/
+
+#section-2 {
+  background-color: blueviolet;
+}
+
+/*
+  About Section
+*/
+
+#section-3 {
+  background-color: pink;
 }

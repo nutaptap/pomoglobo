@@ -51,11 +51,11 @@ html:focus-within {
 
 :root {
   --color1: #d93b58;
-  --color2: #0b395a;
+  --color2: #cdd7de;
   --color3: #020c15;
   --color4: #f6f9f9;
   --color5: #e6f288;
-  --color6: #e4e6e7;
+  --color6: #e9ebeb;
 }
 
 /*
@@ -76,15 +76,6 @@ button {
 
 /*DELETE THIS*/
 
-section {
-  scroll-snap-align: start;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
 a {
   margin: 2vw;
   width: 80px;
@@ -102,7 +93,12 @@ a > img {
 */
 
 #section-1 {
+  scroll-snap-align: start;
   background-color: var(--color4);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*
@@ -121,6 +117,7 @@ nav {
 .nav-logo {
   display: flex;
   align-items: center;
+  cursor: default;
 }
 
 .nav-logo > img {
@@ -132,7 +129,7 @@ nav {
   margin-left: 0.3rem;
   font-weight: 700;
   letter-spacing: 0.3rem;
-  text-shadow: 1.5px 0 var(--color3);
+  text-shadow: 1px 0 var(--color3);
 }
 
 .nav-divider {
@@ -159,6 +156,7 @@ nav {
   background-color: transparent;
   border: solid 2px var(--color3);
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .nav-menu-button {
@@ -166,6 +164,7 @@ nav {
   padding: 0;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .nav-menu-button > img {
@@ -173,12 +172,139 @@ nav {
 }
 
 /*
+  Sounds
+*/
+
+.sounds {
+  margin: 2.5rem 0;
+  width: 82vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sounds > h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  line-height: 4rem;
+  text-shadow: 1.5px 0 var(--color3);
+}
+
+.sounds > button {
+  height: 50px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20vw;
+  margin-bottom: 4rem;
+  background-color: var(--color5);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.sounds > button > img {
+  width: 80px;
+}
+
+/*
+  Sound Toggles
+*/
+
+.sound-toggles-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1.2rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background-color: var(--color2);
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: var(--color4);
+  left: 2.5px;
+  top: 2.5px;
+  transition: all 0.4s;
+}
+
+input[type="radio"]:checked + .switch::after {
+  transform: translateX(50px);
+}
+
+input[type="radio"]:checked + .switch {
+  background-color: var(--color1);
+}
+
+.offscreen {
+  position: absolute;
+  left: -999999px;
+}
+
+.toggle-container > p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/*
+  Pomodoro
+*/
+
+.pomodoro {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.pomodoro-image-container {
+  height: 100%;
+  width: 100%;
+  background-image: url("images/f701c222-925d-41bc-8675-150be0885cb2_rw_1920.jpg");
+  background-size: cover;
+}
+.pomodoro-container {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color5);
+}
+
+/*-------------------------*/
+
+/*
   Tasks Section
 */
 
 #section-2 {
   background-color: blueviolet;
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/*-------------------------*/
 
 /*
   About Section
@@ -186,4 +312,9 @@ nav {
 
 #section-3 {
   background-color: pink;
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

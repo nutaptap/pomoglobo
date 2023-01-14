@@ -37,11 +37,7 @@ img {
   Navigation
 */
 
-html {
-  scroll-snap-type: y mandatory;
-}
-
-html:focus-within {
+* {
   scroll-behavior: smooth;
 }
 
@@ -74,16 +70,16 @@ button {
   Sections
 */
 
-/*DELETE THIS*/
+/*Arrow buttons*/
 
 a {
-  margin: 2vw;
-  width: 80px;
-  height: 80px;
+  margin: 2rem;
+  width: 40px;
+  height: 40px;
 }
 
 a > img {
-  width: 80px;
+  width: 40px;
 }
 
 /*-------------------------*/
@@ -176,6 +172,7 @@ nav {
 */
 
 .sounds {
+  position: relative;
   margin: 2.5rem 0;
   width: 82vw;
   display: flex;
@@ -183,17 +180,19 @@ nav {
   justify-content: space-between;
 }
 
-.sounds > h1 {
+h1 {
   font-size: 4rem;
   font-weight: 700;
   letter-spacing: 0.3rem;
   line-height: 4rem;
-  text-shadow: 1.5px 0 var(--color3);
+  text-shadow: 1px 0 var(--color3);
 }
 
-.sounds > button {
+.sounds span {
+  position: absolute;
+  left: 20rem;
   height: 50px;
-  width: 120px;
+  min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,11 +201,22 @@ nav {
   background-color: var(--color5);
   border: none;
   border-radius: 25px;
-  cursor: pointer;
+  cursor: default;
+  transition: left 0.3s ease-in, background-color 0.3s ease-in;
 }
 
-.sounds > button > img {
+.sounds span img {
   width: 80px;
+  transition: filter 0.3s ease-in;
+}
+
+.sounds span:hover {
+  left: 20.5rem;
+  background-color: var(--color3);
+}
+
+.sounds span img:hover {
+  filter: invert(1);
 }
 
 /*
@@ -287,6 +297,66 @@ input[type="radio"]:checked + .switch {
   height: 100%;
   width: 100%;
   background-color: var(--color5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*
+  Pomodoro timer
+*/
+
+.timer {
+  width: 480px;
+  height: 130px;
+  background-color: var(--color4);
+  border-radius: 1rem;
+  margin-top: 12vh;
+}
+
+/*
+  Status display
+*/
+
+.status-display h1 {
+  margin-top: 6vh;
+}
+
+/*
+  Pomodoro rounds
+*/
+
+.round-display {
+  display: flex;
+  align-items: center;
+  margin-top: 4vh;
+}
+
+.round-display > p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.rounds-container {
+  display: flex;
+}
+
+.rounds-container div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  border: 1px solid var(--color3);
+}
+
+.round-completed {
+  background-color: var(--color3);
+}
+.pomodoro-container a {
+  margin-left: 50vw;
 }
 
 /*-------------------------*/

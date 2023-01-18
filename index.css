@@ -524,6 +524,13 @@ input[type="radio"]:checked + .switch {
     margin-bottom: 3rem;
   }
   .pomodoro-container {
-    justify-content: center;
+    margin-top: 7rem;
+  }
+  .timer {
+    position: absolute;
+    top: -6rem;
+  }
+  .pomodoro-section {
+    height: 30vh;
   }
 }

@@ -415,7 +415,23 @@ input[type="radio"]:checked + .switch {
 
 @media (max-width: 1200px) {
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
+  }
+  .sounds {
+    margin: 1rem;
+  }
+  .timer {
+    transform: scale(0.8);
+  }
+  .rounds-container div {
+    transform: scale(0.7);
+  }
+  a {
+    margin: 1rem;
+  }
+  a,
+  a img {
+    transform: scale(0.8);
   }
 }
 
@@ -425,7 +441,7 @@ input[type="radio"]:checked + .switch {
 
 @media (max-width: 1024px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
   .sounds {
     gap: 14vw;
@@ -438,9 +454,6 @@ input[type="radio"]:checked + .switch {
   }
   .timer {
     transform: scale(0.8);
-  }
-  .rounds-container div {
-    transform: scale(0.7);
   }
 }
 
@@ -472,13 +485,6 @@ input[type="radio"]:checked + .switch {
   }
   .pomodoro-container {
     max-width: 50vw;
-  }
-  a {
-    margin: 1rem;
-  }
-  a,
-  a img {
-    transform: scale(0.8);
   }
   .pomodoro-image-container {
     background-image: url("images/f701c222-925d-41bc-8675-150be0885cb2_rw_1920.jpg");

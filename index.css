@@ -320,11 +320,33 @@ input[type="radio"]:checked + .switch {
   Pomodoro timer
 */
 
+.timer-container {
+  display: flex;
+}
+
 .timer {
+  margin-left: 3.5vw;
   width: 350px;
   height: 130px;
   background-color: var(--color4);
   border-radius: 1rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.8rem;
+  margin-left: 1rem;
+  gap: 1rem;
+}
+
+.pomodoro-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
 }
 
 /*
@@ -420,7 +442,7 @@ input[type="radio"]:checked + .switch {
   .sounds {
     margin: 1rem;
   }
-  .timer {
+  .timer-container {
     transform: scale(0.8);
   }
   .rounds-container div {
@@ -452,7 +474,7 @@ input[type="radio"]:checked + .switch {
   .sound-toggles-container {
     transform: scale(0.8);
   }
-  .timer {
+  .timer-container {
     transform: scale(0.8);
   }
 }
@@ -480,7 +502,7 @@ input[type="radio"]:checked + .switch {
   .sounds span {
     display: none;
   }
-  .timer {
+  .timer-container {
     transform: scale(0.5);
   }
   .pomodoro-container {
@@ -532,7 +554,7 @@ input[type="radio"]:checked + .switch {
   .pomodoro-container {
     margin-top: 7rem;
   }
-  .timer {
+  .timer-container {
     position: absolute;
     top: -6rem;
   }

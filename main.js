@@ -4,14 +4,38 @@
 
 // Timer
 
+const roundsDisplay = document.querySelectorAll(".rounds-container div");
+const displayState = document.querySelector(".status-display h1");
+let round = 0;
 let interval;
 let isRunning = false;
+let state = "start";
 let time = { minutes: 0, seconds: 0 };
 let selectedMinutes = 1;
+
+function updateRound() {
+  if (round == 0) {
+    round = 1;
+    roundsDisplay[0].classList.add("round-completed");
+  } else if (round == 1) {
+    round = 2;
+    roundsDisplay[1].classList.add("round-completed");
+  } else if (round == 2) {
+    round = 3;
+    roundsDisplay[2].classList.add("round-completed");
+  } else if (round == 3) {
+    round = 4;
+    roundsDisplay[3].classList.add("round-completed");
+  }
+}
 
 function startTimer() {
   if (time.minutes === 0 && time.seconds === 0) {
     time.minutes = selectedMinutes;
+  }
+  if (state !== "break") {
+    state = "focus";
+    displayState.textContent = "Focus.";
   }
   isRunning = true;
   interval = setInterval(updateTimer, 1000);
@@ -31,9 +55,23 @@ function restartTimer() {
 }
 
 function updateTimer() {
+  if (round === 4) {
+    alert("Time to take a longer break!");
+    return;
+  }
   if (time.minutes === 0 && time.seconds === 0) {
     clearInterval(interval);
-    alert("Beep Beep Beep! Time's up!");
+    console.log("Beep Bop! Time's up!");
+    if (state === "focus") {
+      state = "break";
+      displayState.textContent = "Break.";
+      startTimer();
+      updateRound();
+    } else if (state === "break") {
+      state = "focus";
+      displayState.textContent = "Focus.";
+      startTimer();
+    }
     return;
   } else if (time.seconds === 0) {
     time.minutes--;
@@ -41,9 +79,9 @@ function updateTimer() {
   } else {
     time.seconds--;
   }
-  let displayTime = `${time.minutes} : ${
-    time.seconds < 10 ? "0" + time.seconds : time.seconds
-  }`;
+  let displayTime = `${
+    time.minutes < 10 ? "0" + time.minutes : time.minutes
+  } : ${time.seconds < 10 ? "0" + time.seconds : time.seconds}`;
   document.querySelector(".timer").innerHTML = displayTime;
 }
 
@@ -51,22 +89,22 @@ function updateTimer() {
 
 const playButton = document.querySelectorAll(".pomodoro-button")[0];
 const resetButton = document.querySelectorAll(".pomodoro-button")[1];
+const buttonImage = playButton.querySelector("img");
 
 playButton.addEventListener("click", function () {
   if (isRunning === false) {
     startTimer();
+    buttonImage.src = "images/pause.svg";
   } else {
     pauseTimer();
+    buttonImage.src = "images/play.svg";
   }
 });
 
-resetButton.addEventListener("click", () => restartTimer());
-
-//Rounds
-const temporary = document.querySelector(
-  ".rounds-container div:nth-of-type(1)"
-);
-temporary.classList.add("round-completed");
+resetButton.addEventListener("click", () => {
+  restartTimer();
+  buttonImage.src = "images/play.svg";
+});
 
 /* -----------------------------------------------------------------------------*/
 /* Sound selection buttons  */

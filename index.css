@@ -330,13 +330,18 @@ input[type="radio"]:checked + .switch {
   height: 130px;
   background-color: var(--color4);
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 1.8rem;
-  margin-left: 1rem;
+  margin-left: 1.2rem;
   gap: 1rem;
 }
 
@@ -347,6 +352,11 @@ input[type="radio"]:checked + .switch {
   border-radius: 50%;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+.pomodoro-button:last-of-type {
+  width: 25px;
+  height: 25px;
 }
 
 /*
@@ -379,8 +389,8 @@ input[type="radio"]:checked + .switch {
 }
 
 .rounds-container div {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   margin-left: 0.5rem;
   border: 1px solid var(--color3);

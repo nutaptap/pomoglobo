@@ -326,14 +326,29 @@ input[type="radio"]:checked + .switch {
 
 .timer {
   margin-left: 3.5vw;
-  width: 350px;
+  width: 310px;
   height: 130px;
-  background-color: var(--color4);
-  border-radius: 1rem;
+  background-color: var(--color3);
+  border-radius: 0.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.timer span {
   font-size: 4rem;
+  font-family: monospace;
+  letter-spacing: 0.5rem;
+  color: #fdffed;
+  text-shadow: 0 0 20px #f8ffcd7c, 0 0 20px #f8ffca45;
+  display: flex;
+  justify-content: center;
+}
+
+.timer span:nth-last-of-type(1),
+.timer span:nth-last-of-type(3) {
+  width: 80px;
 }
 
 .button-container {

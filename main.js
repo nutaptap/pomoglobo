@@ -11,7 +11,8 @@ let interval;
 let isRunning = false;
 let state = "start";
 let time = { minutes: 0, seconds: 0 };
-let selectedMinutes = 1;
+let focusMinutes = 25;
+let breakMinutes = 5;
 
 function updateRound() {
   if (round == 0) {
@@ -31,11 +32,13 @@ function updateRound() {
 
 function startTimer() {
   if (time.minutes === 0 && time.seconds === 0) {
-    time.minutes = selectedMinutes;
+    time.minutes = focusMinutes;
   }
   if (state !== "break") {
     state = "focus";
     displayState.textContent = "Focus.";
+  } else if (state === "break") {
+    time.minutes = breakMinutes;
   }
   isRunning = true;
   interval = setInterval(updateTimer, 1000);
@@ -51,22 +54,24 @@ function restartTimer() {
   clearInterval(interval);
   time.minutes = 0;
   time.seconds = 0;
-  document.querySelector(".timer").innerHTML = "00 : 00";
+  document.querySelector(".timer span:nth-of-type(1)").innerHTML = "00";
+  document.querySelector(".timer span:nth-of-type(3)").innerHTML = "00";
 }
 
 function updateTimer() {
-  if (round === 4) {
-    alert("Time to take a longer break!");
-    return;
-  }
   if (time.minutes === 0 && time.seconds === 0) {
     clearInterval(interval);
     console.log("Beep Bop! Time's up!");
     if (state === "focus") {
       state = "break";
+      updateRound();
+      if (round === 4) {
+        displayState.textContent = "Complete.";
+        clearInterval(interval);
+        return;
+      }
       displayState.textContent = "Break.";
       startTimer();
-      updateRound();
     } else if (state === "break") {
       state = "focus";
       displayState.textContent = "Focus.";
@@ -79,10 +84,16 @@ function updateTimer() {
   } else {
     time.seconds--;
   }
-  let displayTime = `${
+  let displayMinutes = `${
     time.minutes < 10 ? "0" + time.minutes : time.minutes
-  } : ${time.seconds < 10 ? "0" + time.seconds : time.seconds}`;
-  document.querySelector(".timer").innerHTML = displayTime;
+  }`;
+  let displaySeconds = `${
+    time.seconds < 10 ? "0" + time.seconds : time.seconds
+  }`;
+  document.querySelector(".timer span:nth-of-type(1)").innerHTML =
+    displayMinutes;
+  document.querySelector(".timer span:nth-of-type(3)").innerHTML =
+    displaySeconds;
 }
 
 // Timer Buttons

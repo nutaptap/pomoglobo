@@ -1,4 +1,28 @@
 /* -----------------------------------------------------------------------------*/
+/* Menu  */
+/* -----------------------------------------------------------------------------*/
+
+const menuButton = document.querySelector(".nav-menu-button");
+const menu = document.querySelector(".menu");
+
+menuButton.addEventListener("click", function (event) {
+  if (
+    event.target === menuButton ||
+    event.target === menuButton.querySelector("img")
+  ) {
+    menu.classList.toggle("hidden");
+  }
+});
+
+document.addEventListener("click", function (event) {
+  if (menu.contains(event.target) || menuButton.contains(event.target)) {
+    return;
+  } else {
+    menu.classList.add("hidden");
+  }
+});
+
+/* -----------------------------------------------------------------------------*/
 /* Pomodoro  */
 /* -----------------------------------------------------------------------------*/
 
@@ -13,6 +37,9 @@ let state = "start";
 let time = { minutes: 0, seconds: 0 };
 let focusMinutes = 25;
 let breakMinutes = 5;
+
+document.querySelector(".timer span:nth-of-type(1)").innerHTML = focusMinutes;
+document.querySelector(".timer span:nth-of-type(3)").innerHTML = "00";
 
 function updateRound() {
   if (round == 0) {

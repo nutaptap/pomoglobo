@@ -1,4 +1,13 @@
 /* -----------------------------------------------------------------------------*/
+/* Warning  */
+/* -----------------------------------------------------------------------------*/
+
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  event.returnValue = "";
+});
+
+/* -----------------------------------------------------------------------------*/
 /* Menu  */
 /* -----------------------------------------------------------------------------*/
 
@@ -19,6 +28,61 @@ document.addEventListener("click", function (event) {
     return;
   } else {
     menu.classList.add("hidden");
+  }
+});
+
+// Custom Timer
+
+const customFocus = document.querySelector(".focus");
+const customBreak = document.querySelector(".break");
+const focusUp = document.querySelectorAll(".focus-selection div img")[0];
+const focusDown = document.querySelectorAll(".focus-selection div img")[1];
+const breakUp = document.querySelectorAll(".break-selection div img")[0];
+const breakDown = document.querySelectorAll(".break-selection div img")[1];
+
+document.addEventListener("click", function (event) {
+  if (event.target === focusUp) {
+    if (customFocus.textContent < 60) {
+      customFocus.textContent = parseInt(customFocus.textContent) + 1;
+    }
+  } else if (event.target === focusDown) {
+    if (customFocus.textContent > 1) {
+      customFocus.textContent = parseInt(customFocus.textContent) - 1;
+    }
+  } else if (event.target === breakUp) {
+    if (customBreak.textContent < 60) {
+      customBreak.textContent = parseInt(customBreak.textContent) + 1;
+    }
+  } else if (event.target === breakDown) {
+    if (customBreak.textContent > 1) {
+      customBreak.textContent = parseInt(customBreak.textContent) - 1;
+    }
+  }
+});
+
+const saveButton = document.querySelector(".save");
+
+saveButton.addEventListener("click", function () {
+  focusMinutes = parseInt(customFocus.textContent);
+  breakMinutes = parseInt(customBreak.textContent);
+  if (state === "start" || state === "focus") {
+    time.minutes = focusMinutes;
+    if (focusMinutes < 10) {
+      document.querySelector(".timer span:nth-of-type(1)").innerHTML =
+        "0" + focusMinutes;
+    } else {
+      document.querySelector(".timer span:nth-of-type(1)").innerHTML =
+        focusMinutes;
+    }
+  } else {
+    time.minutes = breakMinutes;
+    if (breakMinutes < 10) {
+      document.querySelector(".timer span:nth-of-type(1)").innerHTML =
+        "0" + breakMinutes;
+    } else {
+      document.querySelector(".timer span:nth-of-type(1)").innerHTML =
+        breakMinutes;
+    }
   }
 });
 
@@ -90,9 +154,11 @@ function updateTimer() {
     clearInterval(interval);
     console.log("Beep Bop! Time's up!");
     if (state === "focus") {
+      playAlert();
       state = "break";
       updateRound();
       if (round === 4) {
+        playAlert();
         displayState.textContent = "Complete.";
         clearInterval(interval);
         return;
@@ -100,6 +166,7 @@ function updateTimer() {
       displayState.textContent = "Break.";
       startTimer();
     } else if (state === "break") {
+      playAlert();
       state = "focus";
       displayState.textContent = "Focus.";
       startTimer();
@@ -171,7 +238,7 @@ for (let i = 0; i < radioButtons.length; i++) {
 /* Play Sound  */
 /* -----------------------------------------------------------------------------*/
 
-audio = document.getElementById("audio");
+const apiKey = "cSqrUU14OL7LunltuHGPfh1LfbpHbFyIxNSgHCkG";
 
 function playSound(button) {
   let query = "";
@@ -186,14 +253,18 @@ function playSound(button) {
     query = "birds evening";
   }
 
-  const apiKey = "g1oWqXhWb7DB9Pjk9bPpFor5xeZDcC5mHmRoZKbg";
+  const audio = document.getElementById("audio");
   const fields = "id,duration,num_ratings,avg_rating,previews";
   const sort = "rating_desc";
   const filter = "num_ratings:[50 TO *] duration:[400 TO *]";
-  const url = `https://freesound.org/apiv2/search/text/?query=${query}&filter=${filter}&fields=${fields}&sort=${sort}&token=${apiKey}`;
+  const url = `https://freesound.org/apiv2/search/text/?query=${query}&filter=${filter}&fields=${fields}&sort=${sort}`;
 
   // Send the request to the Freesound API
-  fetch(url)
+  fetch(url, {
+    headers: {
+      Authorization: `Token ${apiKey}`,
+    },
+  })
     .then((response) => response.json())
     .then((data) => {
       console.log(data.results);
@@ -210,6 +281,32 @@ function playSound(button) {
 
 function stopSound() {
   audio.muted = true;
+}
+
+/* -----------------------------------------------------------------------------*/
+/* Alert Sound  */
+/* -----------------------------------------------------------------------------*/
+
+function playAlert() {
+  const audio = document.getElementById("audio-alert");
+  const url =
+    "https://freesound.org/apiv2/search/text/?filter=id:185197&fields=previews";
+
+  fetch(url, {
+    headers: {
+      Authorization: `Token ${apiKey}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.results);
+      const sound = data.results[0].previews["preview-hq-mp3"];
+      audio.src = sound;
+      audio.muted = false;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 /* -----------------------------------------------------------------------------*/

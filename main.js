@@ -1,4 +1,97 @@
 /* -----------------------------------------------------------------------------*/
+/* Tasks  */
+/* -----------------------------------------------------------------------------*/
+
+const newTaskButon = document.querySelector(".tasks-sidebar button");
+const taskTemplate = document.querySelector(".task-template");
+const container = document.querySelector(".tasks-container");
+
+const storage = Object.keys(localStorage);
+
+if (storage.length === 0) {
+  createTask();
+} else {
+  const values = storage.map(function (key) {
+    return JSON.parse(localStorage.getItem(key));
+  });
+  values.forEach(function (element) {
+    createTask(element);
+  });
+}
+
+newTaskButon.addEventListener("click", function () {
+  createTask();
+});
+
+function createTask(storedTask) {
+  const clone = taskTemplate.content.cloneNode(true);
+  const taskId = Date.now().toString();
+
+  const task = {
+    id: taskId,
+    text: "",
+    completed: false,
+  };
+
+  container.appendChild(clone);
+
+  container.lastElementChild.id = taskId;
+
+  localStorage.setItem(taskId, JSON.stringify(task));
+
+  const checkboxes = document.querySelectorAll(".task-checkbox");
+  const tasks = document.querySelectorAll(".task");
+
+  for (let i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener("click", function () {
+      const taskId = this.parentElement.parentElement.id;
+
+      const storedTask = JSON.parse(localStorage.getItem(taskId));
+
+      if (this.checked) {
+        tasks[i].classList.add("task-completed");
+        storedTask.completed = true;
+      } else {
+        tasks[i].classList.remove("task-completed");
+        storedTask.completed = false;
+      }
+
+      localStorage.setItem(taskId, JSON.stringify(storedTask));
+    });
+  }
+
+  const deleteButtons = document.querySelectorAll(".task button");
+
+  for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function () {
+      const taskId = this.parentElement.id;
+      this.parentElement.remove();
+      localStorage.removeItem(taskId);
+    });
+  }
+
+  [...tasks].forEach(function (element) {
+    const taskButton = element.querySelector("button");
+    element.addEventListener("mouseover", function () {
+      taskButton.style.display = "flex";
+    });
+    element.addEventListener("mouseout", function () {
+      taskButton.style.display = "none";
+    });
+  });
+
+  const taskDescriptions = document.querySelectorAll(".task-description");
+  taskDescriptions.forEach(function (element) {
+    element.addEventListener("input", function () {
+      const taskId = this.parentElement.parentElement.id;
+      const storedTask = JSON.parse(localStorage.getItem(taskId));
+      storedTask.text = this.textContent;
+      localStorage.setItem(taskId, JSON.stringify(storedTask));
+    });
+  });
+}
+
+/* -----------------------------------------------------------------------------*/
 /* Warning  */
 /* -----------------------------------------------------------------------------*/
 
@@ -322,42 +415,59 @@ window.addEventListener("wheel", function (event) {
   const secondScreen = document.querySelector("#section-2");
   const thirdScreen = document.querySelector("#section-3");
 
-  // Check the current position and scroll direction to determine which section to scroll to
-  // On the first section, when scrolling down, scroll to the second section
-  if (
-    currentPosition >= firstScreen.offsetTop &&
-    currentPosition < secondScreen.offsetTop &&
-    event.deltaY > 0
-  ) {
-    window.scrollTo({
-      top: secondScreen.offsetTop,
+  // Get the "tasks-container" div
+  const tasksContainer = document.querySelector(".tasks-container");
+  // Check if the mouse is inside the "tasks-container" div
+  const isMouseInside = tasksContainer.contains(event.target);
+  // Check if the "tasks-container" div has overflown content
+  const hasContent = tasksContainer.scrollHeight > tasksContainer.offsetHeight;
+
+  // Check whether to scroll inside the tasks container or the whole page
+  if (isMouseInside && hasContent) {
+    // Scroll within the tasks container div
+    tasksContainer.scrollBy({
+      top: event.deltaY,
       behavior: "smooth",
     });
-    // On the second section, when scrolling up, scroll to the first section
-  } else if (
-    currentPosition <= secondScreen.offsetTop &&
-    currentPosition < thirdScreen.offsetTop &&
-    event.deltaY < 0
-  ) {
-    window.scrollTo({
-      top: firstScreen.offsetTop,
-      behavior: "smooth",
-    });
-    // On the second section, when scrolling down, scroll to the third section
-  } else if (
-    currentPosition > secondScreen.offsetTop &&
-    currentPosition < thirdScreen.offsetTop &&
-    event.deltaY > 0
-  ) {
-    window.scrollTo({
-      top: thirdScreen.offsetTop,
-      behavior: "smooth",
-    });
-    // On the third section, when scrolling up, scroll to the second section
-  } else if (currentPosition <= thirdScreen.offsetTop && event.deltaY < 0) {
-    window.scrollTo({
-      top: secondScreen.offsetTop,
-      behavior: "smooth",
-    });
+    // Else scroll normally
+  } else {
+    // Check the current position and scroll direction to determine which section to scroll to
+    // On the first section, when scrolling down, scroll to the second section
+    if (
+      currentPosition >= firstScreen.offsetTop &&
+      currentPosition < secondScreen.offsetTop &&
+      event.deltaY > 0
+    ) {
+      window.scrollTo({
+        top: secondScreen.offsetTop,
+        behavior: "smooth",
+      });
+      // On the second section, when scrolling up, scroll to the first section
+    } else if (
+      currentPosition <= secondScreen.offsetTop &&
+      currentPosition < thirdScreen.offsetTop &&
+      event.deltaY < 0
+    ) {
+      window.scrollTo({
+        top: firstScreen.offsetTop,
+        behavior: "smooth",
+      });
+      // On the second section, when scrolling down, scroll to the third section
+    } else if (
+      currentPosition > secondScreen.offsetTop &&
+      currentPosition < thirdScreen.offsetTop &&
+      event.deltaY > 0
+    ) {
+      window.scrollTo({
+        top: thirdScreen.offsetTop,
+        behavior: "smooth",
+      });
+      // On the third section, when scrolling up, scroll to the second section
+    } else if (currentPosition <= thirdScreen.offsetTop && event.deltaY < 0) {
+      window.scrollTo({
+        top: secondScreen.offsetTop,
+        behavior: "smooth",
+      });
+    }
   }
 });

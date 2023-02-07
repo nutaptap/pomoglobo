@@ -39,16 +39,16 @@
               <div class="focus-selection">
                 <span class="focus">25</span>
                 <div>
-                  <img src="/images/up.svg" />
-                  <img src="/images/down.svg" />
+                  <img src="images/up.svg" />
+                  <img src="images/down.svg" />
                 </div>
               </div>
               <span>BREAK MINUTES</span>
               <div class="break-selection">
                 <span class="break">5</span>
                 <div>
-                  <img src="/images/up.svg" />
-                  <img src="/images/down.svg" />
+                  <img src="images/up.svg" />
+                  <img src="images/down.svg" />
                 </div>
               </div>
               <span class="save">SAVE</span>
@@ -134,13 +134,30 @@
     </section>
     <!-- Tasks Section -->
     <section id="section-2">
-      <a href="#section-1">
-        <img src="images/up-arrow.svg" alt="Arrow up" />
-      </a>
-      <a href="#section-3">
-        <img src="images/down-arrow.svg" alt="Arrow down" />
-      </a>
+      <div class="tasks-sidebar">
+        <a href="#section-1">
+          <img src="images/up-arrow.svg" alt="Arrow up" />
+        </a>
+        <div class="tasks-title">
+          <h1>Tasks</h1>
+          <button>+</button>
+        </div>
+        <a href="#section-3">
+          <img src="images/down-arrow.svg" alt="Arrow down" />
+        </a>
+      </div>
+      <div class="tasks-container"> </div>
     </section>
+    <!-- Template -->
+    <template class="task-template">
+      <div class="task">
+        <button>X</button>
+        <div>
+          <input type="checkbox" class="task-checkbox" />
+          <span role="textbox" contenteditable class="task-description"></span>
+        </div>
+      </div>
+    </template>
     <!-- About Section -->
     <section id="section-3">
       <a href="#section-2">

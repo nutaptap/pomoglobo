@@ -23,21 +23,41 @@ newTaskButon.addEventListener("click", function () {
   createTask();
 });
 
-function createTask(storedTask) {
-  const clone = taskTemplate.content.cloneNode(true);
-  const taskId = Date.now().toString();
+function createTask(existingTasks) {
+  console.log(existingTasks);
+  if (existingTasks) {
+    existingTasks =
+      typeof existingTasks === "object" ? [existingTasks] : existingTasks;
+    existingTasks.forEach((element) => {
+      const clone = taskTemplate.content.cloneNode(true);
+      const taskDescription = clone.querySelector(".task-description");
+      const checkbox = clone.querySelector(".task-checkbox");
 
-  const task = {
-    id: taskId,
-    text: "",
-    completed: false,
-  };
+      taskDescription.textContent = element.text;
+      checkbox.checked = element.completed;
 
-  container.appendChild(clone);
+      container.appendChild(clone);
 
-  container.lastElementChild.id = taskId;
+      container.lastElementChild.id = element.id;
+    });
+  } else {
+    const clone = taskTemplate.content.cloneNode(true);
+    const taskId = Date.now().toString();
 
-  localStorage.setItem(taskId, JSON.stringify(task));
+    const task = {
+      id: taskId,
+      text: "",
+      completed: false,
+    };
+
+    container.appendChild(clone);
+
+    container.lastElementChild.id = taskId;
+
+    localStorage.setItem(taskId, JSON.stringify(task));
+  }
+
+  //////////////////////////////
 
   const checkboxes = document.querySelectorAll(".task-checkbox");
   const tasks = document.querySelectorAll(".task");

@@ -360,12 +360,32 @@ input[type="radio"]:checked + .switch {
   flex-direction: row;
 }
 
-.pomodoro-image-container {
+#pomodoro-image-container {
   height: 100%;
   width: 100%;
-  background-image: url("images/f701c222-925d-41bc-8675-150be0885cb2_rw_1920.jpg");
   background-size: cover;
 }
+
+.start {
+  background-image: url("images/start.jpg");
+}
+
+.rain {
+  background-image: url("images/rain.jpg");
+}
+
+.forest {
+  background-image: url("images/forest.jpg");
+}
+
+.fireplace {
+  background-image: url("images/fireplace.jpg");
+}
+
+.evening {
+  background-image: url("images/evening.jpg");
+}
+
 .pomodoro-section {
   height: 100%;
   width: 100%;
@@ -411,7 +431,6 @@ input[type="radio"]:checked + .switch {
   font-family: monospace;
   letter-spacing: 0.5rem;
   color: white;
-  text-shadow: 0 0 20px #f8ffcd7c, 0 0 20px #f8ffca45;
   display: flex;
   justify-content: center;
 }
@@ -639,13 +658,64 @@ input[type="radio"]:checked + .switch {
   scroll-snap-align: start;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  color: white;
 }
 
-#section-3 a {
-  background-color: white;
-  border-radius: 50%;
+.about-container {
+  width: 50vw;
+  min-width: 750px;
+  padding: 4vw 2vw;
+  line-height: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  text-shadow: 1px 0 var(--color3);
+  white-space: nowrap;
+}
+
+h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: white 1px solid;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.2rem;
+}
+
+.about-container li {
+  margin-left: 1.2rem;
+}
+
+.about-container p,
+h3 {
+  margin-left: 0.4rem;
+}
+
+.about-works {
+  margin-top: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-image-container {
+  width: 50vw;
+  height: 100%;
+  background-image: url("images/about.jpg");
+  background-size: cover;
+  left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-position: -50px center;
+}
+
+.about-image-container a > img {
+  filter: invert(100%);
 }
 
 /*-------------------------*/
@@ -661,6 +731,24 @@ input[type="radio"]:checked + .switch {
 @media (max-width: 1200px) {
   h1 {
     font-size: 3rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+  }
+  .about-use h2 {
+    padding-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 0.6rem;
+  }
+  p,
+  li {
+    font-size: 0.7rem;
+  }
+  .about-works {
+    gap: 0.5rem;
   }
   .sounds {
     margin: 1rem;
@@ -699,6 +787,9 @@ input[type="radio"]:checked + .switch {
   }
   .timer-container {
     transform: scale(0.8);
+  }
+  .about-works {
+    display: none;
   }
 }
 

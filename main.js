@@ -57,8 +57,6 @@ function createTask(existingTasks) {
     localStorage.setItem(taskId, JSON.stringify(task));
   }
 
-  //////////////////////////////
-
   const checkboxes = document.querySelectorAll(".task-checkbox");
   const tasks = document.querySelectorAll(".task");
 
@@ -329,6 +327,7 @@ resetButton.addEventListener("click", () => {
 /* -----------------------------------------------------------------------------*/
 
 const radioButtons = document.querySelectorAll("input[type='radio']");
+const backgroundImage = document.querySelector("#pomodoro-image-container");
 let soundSelection = null;
 
 // Add event listeners to each radio button for sound selection
@@ -340,9 +339,13 @@ for (let i = 0; i < radioButtons.length; i++) {
       stopSound();
       soundSelection = null;
       this.checked = false;
+      backgroundImage.classList.remove(...backgroundImage.classList);
+      backgroundImage.classList.add("start");
     } else {
       soundSelection = this.id;
       playSound(this.id);
+      backgroundImage.classList.remove(...backgroundImage.classList);
+      backgroundImage.classList.add(`${this.id}`);
     }
   });
 }

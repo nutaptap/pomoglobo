@@ -527,8 +527,8 @@ input[type="radio"]:checked + .switch {
 */
 
 .tasks-sidebar {
-  width: 28vw;
-  min-width: 280px;
+  width: 34vw;
+  min-width: 200px;
   border-right: solid var(--color6) 2px;
   display: flex;
   flex-direction: column;
@@ -581,6 +581,7 @@ input[type="radio"]:checked + .switch {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
+  gap: 2vw;
 }
 
 .task {
@@ -592,8 +593,7 @@ input[type="radio"]:checked + .switch {
   justify-content: center;
   flex-direction: column;
   position: relative;
-  margin-bottom: 2rem;
-  margin-right: 2rem;
+  min-width: 200px;
 }
 
 .task div {
@@ -664,7 +664,7 @@ input[type="radio"]:checked + .switch {
 
 .about-container {
   width: 50vw;
-  min-width: 750px;
+  min-width: 650px;
   padding: 4vw 2vw;
   line-height: 1.5rem;
 }
@@ -678,11 +678,12 @@ h2 {
 }
 
 h3 {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 700;
   border: white 1px solid;
-  padding: 0.1rem 0.4rem;
+  padding: 0.01rem 0.4rem;
   border-radius: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 .about-container li {
@@ -694,8 +695,12 @@ h3 {
   margin-left: 0.4rem;
 }
 
+.about-use h2 {
+  padding-bottom: 1rem;
+}
+
 .about-works {
-  margin-top: 2vw;
+  margin-top: 2.5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -711,11 +716,27 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background-position: -50px center;
 }
 
 .about-image-container a > img {
   filter: invert(100%);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+footer a {
+  width: 25px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
 }
 
 /*-------------------------*/
@@ -735,9 +756,6 @@ h3 {
   h2 {
     font-size: 1.2rem;
     padding-bottom: 0.5rem;
-  }
-  .about-use h2 {
-    padding-bottom: 1rem;
   }
 
   h3 {
@@ -790,6 +808,23 @@ h3 {
   }
   .about-works {
     display: none;
+  }
+  .about-container {
+    min-width: 0;
+  }
+  .about-image-container {
+    width: 100%;
+    height: 0;
+    background-image: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #section-3 {
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 1.5rem;
   }
 }
 

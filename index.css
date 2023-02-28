@@ -810,7 +810,13 @@ footer a {
     display: none;
   }
   .about-container {
-    min-width: 0;
+    width: 95vw;
+  }
+  .about-use {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
   }
   .about-image-container {
     width: 100%;
@@ -822,6 +828,7 @@ footer a {
   }
   #section-3 {
     flex-direction: column;
+    justify-content: center;
   }
   h1 {
     font-size: 1.5rem;
@@ -861,6 +868,29 @@ footer a {
     background-image: url("images/f701c222-925d-41bc-8675-150be0885cb2_rw_1920.jpg");
     background-size: cover;
     background-position: 25% center;
+  }
+  #section-2 {
+    flex-direction: column;
+  }
+  .tasks-sidebar {
+    width: 100%;
+    border-right: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8vw, 5vw;
+  }
+
+  .tasks-title {
+    margin-top: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+  .tasks-title button {
+    margin: 0;
+    margin-left: 1rem;
+    transform: scale(0.8);
   }
 }
 
@@ -910,5 +940,12 @@ footer a {
   .pomodoro-section {
     min-height: 280px;
     padding-bottom: 2rem;
+  }
+  .tasks-title button {
+    transform: scale(0.5);
+    margin-left: 0.2rem;
+  }
+  .tasks-title h1 {
+    font-size: 1.6rem;
   }
 }

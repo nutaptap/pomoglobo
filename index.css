@@ -1,6 +1,4 @@
-/*
-  CSS Reset
-*/
+/*#region RESET */
 
 html {
   box-sizing: border-box;
@@ -33,17 +31,17 @@ img {
   height: auto;
 }
 
-/*
-  Navigation
-*/
+/*#endregion */
+
+/*#region NAVIGATION */
 
 * {
   scroll-behavior: smooth;
 }
 
-/*
-  Color
-*/
+/*#endregion */
+
+/*#region COLOR */
 
 :root {
   --color1: #d93b58;
@@ -54,9 +52,9 @@ img {
   --color6: #e9ebeb;
 }
 
-/*
-  Type
-*/
+/*#endregion */
+
+/*#region FONT */
 
 body,
 button {
@@ -66,11 +64,9 @@ button {
   font-weight: 400;
 }
 
-/*
-  Sections
-*/
+/*#endregion */
 
-/*Arrow buttons*/
+/*#region ARROW BUTONS */
 
 a {
   margin: 2rem;
@@ -82,11 +78,11 @@ a > img {
   width: 40px;
 }
 
-/*-------------------------*/
+/*#endregion */
 
-/*
-  Pomodoro & Sounds Section
-*/
+/*------------ SECTIONS -------------*/
+
+/*#region POMODORO SECTION */
 
 #section-1 {
   scroll-snap-align: start;
@@ -509,11 +505,9 @@ input[type="radio"]:checked + .switch {
   right: 0;
 }
 
-/*-------------------------*/
+/*#endregion */
 
-/*
-  Tasks Section
-*/
+/*#region TASKS SECTION */
 
 #section-2 {
   background-color: var(--color4);
@@ -647,11 +641,10 @@ input[type="radio"]:checked + .switch {
 .task-completed {
   text-decoration: line-through;
 }
-/*-------------------------*/
 
-/*
-  About Section
-*/
+/*#endregion */
+
+/*#region ABOUT SECTION */
 
 #section-3 {
   background-color: var(--color3);
@@ -739,15 +732,11 @@ footer a {
   margin-left: 0.5rem;
 }
 
-/*-------------------------*/
+/*#endregion */
 
-/*
-  Media querys
-*/
+/*---------- MEDIA QUERIES ----------*/
 
-/*
-  Small desktop
-*/
+/*#region SMALL DESKTOP */
 
 @media (max-width: 1200px) {
   h1 {
@@ -786,9 +775,9 @@ footer a {
   }
 }
 
-/*
-  Laptop
-*/
+/*#endregion */
+
+/*#region LAPTOP */
 
 @media (max-width: 1024px) {
   h1 {
@@ -835,9 +824,9 @@ footer a {
   }
 }
 
-/*
-  Tablet
-*/
+/*#endregion */
+
+/*#region TABLET */
 
 @media (max-width: 768px) {
   h1 {
@@ -892,11 +881,19 @@ footer a {
     margin-left: 1rem;
     transform: scale(0.8);
   }
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-use {
+    width: 90vw;
+  }
 }
 
-/*
-  Mobile
-*/
+/*#endregion */
+
+/*#region MOBILE */
 
 @media (max-width: 480px) {
   h1 {
@@ -949,3 +946,5 @@ footer a {
     font-size: 1.6rem;
   }
 }
+
+/*#endregion */

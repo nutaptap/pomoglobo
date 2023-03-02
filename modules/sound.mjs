@@ -52,10 +52,7 @@ const sound = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
-
         const sound = data.results[0].previews["preview-hq-mp3"];
-
         audio.src = sound;
         audio.muted = false;
       })
@@ -82,7 +79,6 @@ const sound = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
         const sound = data.results[0].previews["preview-hq-mp3"];
         audio.src = sound;
         audio.muted = false;

@@ -21,7 +21,6 @@ const tasks = () => {
   });
 
   function createTask(existingTasks) {
-    console.log(existingTasks);
     if (existingTasks) {
       existingTasks =
         typeof existingTasks === "object" ? [existingTasks] : existingTasks;

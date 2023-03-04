@@ -1,3 +1,5 @@
+import { playAlert } from "./sound.mjs";
+
 const pomodoroTimer = () => {
   // Timer
   const roundsDisplay = document.querySelectorAll(".rounds-container div");

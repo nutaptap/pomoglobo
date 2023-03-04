@@ -1,3 +1,5 @@
+const apiKey = "cSqrUU14OL7LunltuHGPfh1LfbpHbFyIxNSgHCkG";
+
 const sound = () => {
   /* Sound selection buttons  */
 
@@ -23,8 +25,6 @@ const sound = () => {
   }
 
   /* Play Sound  */
-
-  const apiKey = "cSqrUU14OL7LunltuHGPfh1LfbpHbFyIxNSgHCkG";
 
   function playSound(button) {
     let query = "";
@@ -64,29 +64,29 @@ const sound = () => {
   function stopSound() {
     audio.muted = true;
   }
-
-  /* Alert Sound  */
-
-  function playAlert() {
-    const audio = document.getElementById("audio-alert");
-    const url =
-      "https://freesound.org/apiv2/search/text/?filter=id:185197&fields=previews";
-
-    fetch(url, {
-      headers: {
-        Authorization: `Token ${apiKey}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const sound = data.results[0].previews["preview-hq-mp3"];
-        audio.src = sound;
-        audio.muted = false;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 };
 
-export { sound };
+/* Alert Sound  */
+
+function playAlert() {
+  const audio = document.getElementById("audio-alert");
+  const url =
+    "https://freesound.org/apiv2/search/text/?filter=id:185197&fields=previews";
+
+  fetch(url, {
+    headers: {
+      Authorization: `Token ${apiKey}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const sound = data.results[0].previews["preview-hq-mp3"];
+      audio.src = sound;
+      audio.muted = false;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export { sound, playAlert };
